@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PiHoleApiClient.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace PiHoleApiClient
@@ -26,7 +27,7 @@ namespace PiHoleApiClient
         Task<string> GetQueryTypesAsStringAsync();
         Task<string> GetAllQueriesAsync();
         Task<bool> Enable();
-        Task<bool> Disable(long seconds);
+        Task<PiStatus> Disable(long seconds);
         Task<string> RecentlyBlockedAsync();
     }
 }

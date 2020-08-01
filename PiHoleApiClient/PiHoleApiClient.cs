@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using PiHoleApiClient.Models;
+using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -7,17 +10,22 @@ namespace PiHoleApiClient
 {
     public class PiHoleApiClient : IPiHoleApiClient
     {
-        private string _baseUl;
+        private string _baseUrl;
         private string _token;
-        public PiHoleApiClient(string baseUrl, string token)
+        private static HttpClient _httpClient;
+        private readonly string _enableEndpoint = "disable";
+        public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
-            _baseUl = baseUrl;
+            _httpClient = httpClient;
+            _baseUrl = baseUrl;
             _token = token;
         }
 
-        public Task<bool> Disable(long seconds)
+        public async Task<PiStatus> Disable(long seconds)
         {
-            throw new NotImplementedException();
+            var result = await _httpClient.GetAsync($"{_baseUrl}?{_enableEndpoint}={seconds}&auth={_token}");
+            var statusString = await result.Content.ReadAsStringAsync();
+            return JsonConvert.DeserializeObject<PiStatus>(statusString);
         }
 
         public Task<bool> Enable()

@@ -16,6 +16,7 @@ namespace PiHoleApiClient
         private readonly string _disableEndpoint = "disable";
         private readonly string _enabledEndpoint = "enable";
         private readonly string _getAllQueriesEndpoint = "getAllQueries";
+
         public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
             _httpClient = httpClient;
@@ -28,6 +29,7 @@ namespace PiHoleApiClient
             var r = await _httpClient.GetAsync(url);
             return await r.Content.ReadAsStringAsync();
         }
+
         public async Task<PiStatus> Disable(long seconds = 0)
         {
             var s = seconds > 0 ? $"{_disableEndpoint}={seconds}" : _disableEndpoint;
@@ -45,7 +47,6 @@ namespace PiHoleApiClient
         {
             var result = await GetResultAsString($"{_baseUrl}?{_getAllQueriesEndpoint}&auth={_token}");
             return JsonConvert.DeserializeObject<PreQuery>(result).MapQueries();
-            
         }
 
         public Task<string> GetApiBackendAsync()

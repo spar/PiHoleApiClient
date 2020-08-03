@@ -10,8 +10,8 @@ namespace PiHoleApiClient
 {
     public class PiHoleApiClient : IPiHoleApiClient
     {
-        private string _baseUrl;
-        private string _token;
+        private readonly string _baseUrl;
+        private readonly string _token;
         private static HttpClient _httpClient;
         private readonly string _disableEndpoint = "disable";
         private readonly string _enabledEndpoint = "enable";
@@ -49,7 +49,7 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<PreQuery>(result).MapQueries();
         }
 
-        public Task<string> GetApiBackendAsync()
+        public Task<string> GetApiBackendTypeAsync()
         {
             throw new NotImplementedException();
         }

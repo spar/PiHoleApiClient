@@ -11,7 +11,7 @@ namespace PiHoleApiClient
     {
         Task<string> GetApiVersionAsync();
 
-        Task<string> GetApiBackendAsync();
+        Task<string> GetApiBackendTypeAsync();
 
         Task<dynamic> GetSummaryRawAsync();
 

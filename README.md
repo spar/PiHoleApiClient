@@ -1,2 +1,2 @@
 # Introduction
-This is a client for communitcating with Pi-hole API
+This is a client for communicating with Pi-hole API

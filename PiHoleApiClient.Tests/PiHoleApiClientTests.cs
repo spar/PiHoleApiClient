@@ -11,8 +11,7 @@ namespace PiHoleApiClient.Tests
 {
     public class PiHoleApiClientTests
     {
-        [Fact]
-        public async void PiHoleEnable_Sucess()
+        private Mock<HttpMessageHandler> GetMockHttpMsgHandler(string response)
         {
             var handlerMock = new Mock<HttpMessageHandler>(MockBehavior.Strict);
             handlerMock.Protected()
@@ -26,19 +25,22 @@ namespace PiHoleApiClient.Tests
                    .ReturnsAsync(new HttpResponseMessage()
                    {
                        StatusCode = HttpStatusCode.OK,
-                       Content = new StringContent("{\"status\": \"disabled\"}"),
+                       Content = new StringContent(response),
                    })
                    .Verifiable();
-            var httpClient = new HttpClient(handlerMock.Object);
+            return handlerMock;
+        } 
+        [Fact]
+        public async void PiHoleEnable_Sucess()
+        {
+            string successResponse = "{\"status\": \"disabled\"}";
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
 
             var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "token");
             var status = await piholeClient.Disable(10);
 
             Assert.NotNull(status);
             Assert.Equal("disabled", status.Status);
-
-
-
         }
     }
 }

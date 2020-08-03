@@ -1,9 +1,9 @@
 ﻿using Newtonsoft.Json;
+using PiHoleApiClient.Mappers;
 using PiHoleApiClient.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace PiHoleApiClient
@@ -13,7 +13,9 @@ namespace PiHoleApiClient
         private string _baseUrl;
         private string _token;
         private static HttpClient _httpClient;
-        private readonly string _enableEndpoint = "disable";
+        private readonly string _disableEndpoint = "disable";
+        private readonly string _enabledEndpoint = "enable";
+        private readonly string _getAllQueriesEndpoint = "getAllQueries";
         public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
             _httpClient = httpClient;
@@ -21,21 +23,29 @@ namespace PiHoleApiClient
             _token = token;
         }
 
-        public async Task<PiStatus> Disable(long seconds)
+        private async Task<string> GetResultAsString(string url)
         {
-            var result = await _httpClient.GetAsync($"{_baseUrl}?{_enableEndpoint}={seconds}&auth={_token}");
-            var statusString = await result.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<PiStatus>(statusString);
+            var r = await _httpClient.GetAsync(url);
+            return await r.Content.ReadAsStringAsync();
+        }
+        public async Task<PiStatus> Disable(long seconds = 0)
+        {
+            var s = seconds > 0 ? $"{_disableEndpoint}={seconds}" : _disableEndpoint;
+            var resultString = await GetResultAsString($"{_baseUrl}?{s}&auth={_token}");
+            return JsonConvert.DeserializeObject<PiStatus>(resultString);
         }
 
-        public Task<bool> Enable()
+        public async Task<PiStatus> Enable()
         {
-            throw new NotImplementedException();
+            return JsonConvert.DeserializeObject<PiStatus>
+                (await GetResultAsString($"{_baseUrl}?{_enabledEndpoint}&auth={_token}"));
         }
 
-        public Task<string> GetAllQueriesAsync()
+        public async Task<List<Query>> GetAllQueriesAsync()
         {
-            throw new NotImplementedException();
+            var result = await GetResultAsString($"{_baseUrl}?{_getAllQueriesEndpoint}&auth={_token}");
+            return JsonConvert.DeserializeObject<PreQuery>(result).MapQueries();
+            
         }
 
         public Task<string> GetApiBackendAsync()

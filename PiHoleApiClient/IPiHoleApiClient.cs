@@ -1,5 +1,6 @@
 ﻿using PiHoleApiClient.Models;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace PiHoleApiClient
@@ -25,9 +26,9 @@ namespace PiHoleApiClient
         Task<string> GetForwardDestinationsAsStringAsync();
         Task<dynamic> GetQueryTypesAsync();
         Task<string> GetQueryTypesAsStringAsync();
-        Task<string> GetAllQueriesAsync();
-        Task<bool> Enable();
-        Task<PiStatus> Disable(long seconds);
+        Task<List<Query>> GetAllQueriesAsync();
+        Task<PiStatus> Enable();
+        Task<PiStatus> Disable(long seconds=0);
         Task<string> RecentlyBlockedAsync();
     }
 }

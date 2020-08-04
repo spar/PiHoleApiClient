@@ -100,7 +100,41 @@ namespace PiHoleApiClient.Tests
 
             Assert.NotNull(versionObj);
             Assert.Equal("3", versionObj.Version);
-
         }
+
+        [Fact]
+        public async void GetForwardDestinationsAsStringc_Success()
+        {
+            string successResponse = File.ReadAllText("Data/Api/getForwardDestinations.json");
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
+
+            var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "token");
+            var fwdsObj = await piholeClient.GetForwardDestinationsAsync();
+
+            Assert.NotNull(fwdsObj);
+            Assert.True(fwdsObj.FwdDestinations.Count > 0);
+            Assert.Equal("4.22", fwdsObj.FwdDestinations["blocklist|blocklist"]);
+            Assert.Equal("61.69", fwdsObj.FwdDestinations["cache|cache"]);
+            Assert.Equal("21.7", fwdsObj.FwdDestinations["one.one.one.one|1.1.1.1"]);
+            Assert.Equal("18.1", fwdsObj.FwdDestinations["one.one.one.one|1.0.0.1"]);
+        }
+
+        [Fact]
+        public async void GetOverTimeData10minsAsync_Success()
+        {
+            string successResponse = File.ReadAllText("Data/Api/overTimeData10mins.json");
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
+
+            var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "token");
+            var ovrTimeObj = await piholeClient.GetOverTimeData10minsAsync();
+
+            Assert.NotNull(ovrTimeObj);
+            Assert.True(ovrTimeObj.AdsOverTime.Count > 0);
+            Assert.True(ovrTimeObj.DomainsOverTime.Count > 0);
+            Assert.Equal(66, ovrTimeObj.DomainsOverTime["1596438300"]);
+            Assert.Equal(8, ovrTimeObj.AdsOverTime["1596438300"]);
+        }
+
+
     }
 }

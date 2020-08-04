@@ -18,6 +18,8 @@ namespace PiHoleApiClient
         private readonly string _getAllQueriesEndpoint = "getAllQueries";
         private readonly string _getApiBackendTypeEndpoint = "type";
         private readonly string _getApiVersionEndpoint = "version";
+        private readonly string _getForwardDestinationsEndpoint = "getForwardDestinations";
+        private readonly string _overTimeData10minsEndpoint = "overTimeData10mins";
 
         public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
@@ -63,24 +65,16 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<PiApiVersion>(resultString);
         }
 
-        public Task<string> GetForwardDestinationsAsStringAsync()
+        public async Task<ForwardDestinations> GetForwardDestinationsAsync()
         {
-            throw new NotImplementedException();
+            var resultString = await GetResultAsString($"{_baseUrl}?{_getForwardDestinationsEndpoint}&auth={_token}");
+            return JsonConvert.DeserializeObject<ForwardDestinations>(resultString);
         }
 
-        public Task<dynamic> GetForwardDestinationsAsync()
+        public async Task<OverTimeData10mins> GetOverTimeData10minsAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> GetOverTimeData10minsAsStringync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<dynamic> GetOverTimeData10minsAsync()
-        {
-            throw new NotImplementedException();
+            var resultString = await GetResultAsString($"{_baseUrl}?{_overTimeData10minsEndpoint}");
+            return JsonConvert.DeserializeObject<OverTimeData10mins>(resultString);
         }
 
         public Task<string> GetQueryTypesAsStringAsync()

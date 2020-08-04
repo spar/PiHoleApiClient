@@ -21,9 +21,7 @@ namespace PiHoleApiClient
 
         Task<string> GetSummaryAsStringAsync();
 
-        Task<dynamic> GetOverTimeData10minsAsync();
-
-        Task<string> GetOverTimeData10minsAsStringync();
+        Task<OverTimeData10mins> GetOverTimeData10minsAsync();
 
         Task<dynamic> GetTopItemsAsync();
 
@@ -33,9 +31,7 @@ namespace PiHoleApiClient
 
         Task<string> GetTopClientsAsStringAsync();
 
-        Task<dynamic> GetForwardDestinationsAsync();
-
-        Task<string> GetForwardDestinationsAsStringAsync();
+        Task<ForwardDestinations> GetForwardDestinationsAsync();
 
         Task<dynamic> GetQueryTypesAsync();
 

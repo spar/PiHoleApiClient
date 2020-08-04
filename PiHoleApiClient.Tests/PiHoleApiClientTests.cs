@@ -74,5 +74,19 @@ namespace PiHoleApiClient.Tests
             Assert.Equal("127.0.0.1", queries[0].Client);
             Assert.Equal("OK (forwarded)", queries[0].Status);
         }
+
+        [Fact]
+        public async void GetApiBackendType_Success()
+        {
+            string successResponse = "{\"type\": \"FTL\"}";
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
+
+            var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "token");
+            var typeObj = await piholeClient.GetApiBackendTypeAsync();
+
+            Assert.NotNull(typeObj);
+            Assert.Equal("FTL", typeObj.Type);
+
+        }
     }
 }

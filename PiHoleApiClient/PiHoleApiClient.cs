@@ -16,6 +16,7 @@ namespace PiHoleApiClient
         private readonly string _disableEndpoint = "disable";
         private readonly string _enabledEndpoint = "enable";
         private readonly string _getAllQueriesEndpoint = "getAllQueries";
+        private readonly string _getApiBackendTypeEndpoint = "type";
 
         public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
@@ -49,9 +50,10 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<PreQuery>(result).MapQueries();
         }
 
-        public Task<string> GetApiBackendTypeAsync()
+        public async Task<PiApiBackendType> GetApiBackendTypeAsync()
         {
-            throw new NotImplementedException();
+            var resultString = await GetResultAsString($"{_baseUrl}?{_getApiBackendTypeEndpoint}");
+            return JsonConvert.DeserializeObject<PiApiBackendType>(resultString);
         }
 
         public Task<string> GetApiVersionAsync()

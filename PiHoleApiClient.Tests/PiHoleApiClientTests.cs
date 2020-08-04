@@ -86,6 +86,20 @@ namespace PiHoleApiClient.Tests
 
             Assert.NotNull(typeObj);
             Assert.Equal("FTL", typeObj.Type);
+        }
+
+
+        [Fact]
+        public async void GetApiVersion_Success()
+        {
+            string successResponse = "{\"version\": 3}";
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
+
+            var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "");
+            var versionObj = await piholeClient.GetApiVersionAsync();
+
+            Assert.NotNull(versionObj);
+            Assert.Equal("3", versionObj.Version);
 
         }
     }

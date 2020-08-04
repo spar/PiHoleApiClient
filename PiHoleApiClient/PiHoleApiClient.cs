@@ -17,6 +17,7 @@ namespace PiHoleApiClient
         private readonly string _enabledEndpoint = "enable";
         private readonly string _getAllQueriesEndpoint = "getAllQueries";
         private readonly string _getApiBackendTypeEndpoint = "type";
+        private readonly string _getApiVersionEndpoint = "version";
 
         public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
@@ -56,9 +57,10 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<PiApiBackendType>(resultString);
         }
 
-        public Task<string> GetApiVersionAsync()
+        public async Task<PiApiVersion> GetApiVersionAsync()
         {
-            throw new NotImplementedException();
+            var resultString = await GetResultAsString($"{_baseUrl}?{_getApiVersionEndpoint}");
+            return JsonConvert.DeserializeObject<PiApiVersion>(resultString);
         }
 
         public Task<string> GetForwardDestinationsAsStringAsync()

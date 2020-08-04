@@ -9,7 +9,7 @@ namespace PiHoleApiClient
     /// </summary>
     public interface IPiHoleApiClient
     {
-        Task<string> GetApiVersionAsync();
+        Task<PiApiVersion> GetApiVersionAsync();
 
         Task<PiApiBackendType> GetApiBackendTypeAsync();
 

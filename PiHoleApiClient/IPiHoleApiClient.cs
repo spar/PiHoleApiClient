@@ -15,11 +15,7 @@ namespace PiHoleApiClient
 
         Task<dynamic> GetSummaryRawAsync();
 
-        Task<string> GetSummaryRawAsStringAsync();
-
-        Task<dynamic> GetSummaryAsync();
-
-        Task<string> GetSummaryAsStringAsync();
+        Task<Summary> GetSummaryAsync();
 
         Task<OverTimeData10mins> GetOverTimeData10minsAsync();
 

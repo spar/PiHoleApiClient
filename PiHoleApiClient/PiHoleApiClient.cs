@@ -21,6 +21,7 @@ namespace PiHoleApiClient
         private readonly string _getForwardDestinationsEndpoint = "getForwardDestinations";
         private readonly string _overTimeData10minsEndpoint = "overTimeData10mins";
         private readonly string _getQueryTypesEndpoint = "getQueryTypes";
+        private readonly string _summaryEndpoint = "summary";
 
         public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
@@ -84,19 +85,10 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<PiQuerytypes>(resultString);
         }
 
-        public Task<string> GetSummaryAsStringAsync()
+        public async Task<Summary> GetSummaryAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<dynamic> GetSummaryAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> GetSummaryRawAsStringAsync()
-        {
-            throw new NotImplementedException();
+            var resultString = await GetResultAsString($"{_baseUrl}?{_summaryEndpoint}");
+            return JsonConvert.DeserializeObject<Summary>(resultString);
         }
 
         public Task<dynamic> GetSummaryRawAsync()

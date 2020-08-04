@@ -33,9 +33,8 @@ namespace PiHoleApiClient
 
         Task<ForwardDestinations> GetForwardDestinationsAsync();
 
-        Task<dynamic> GetQueryTypesAsync();
+        Task<PiQuerytypes> GetQueryTypesAsync();
 
-        Task<string> GetQueryTypesAsStringAsync();
 
         Task<List<Query>> GetAllQueriesAsync();
 

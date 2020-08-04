@@ -25,6 +25,9 @@
     <None Update="Data\Api\getForwardDestinations.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Data\Api\getQueryTypes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Data\Api\overTimeData10mins.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

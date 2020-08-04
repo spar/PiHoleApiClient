@@ -135,6 +135,21 @@ namespace PiHoleApiClient.Tests
             Assert.Equal(8, ovrTimeObj.AdsOverTime["1596438300"]);
         }
 
+        [Fact]
+        public async void GetQueryTypesAsync_Success()
+        {
+            string successResponse = File.ReadAllText("Data/Api/getQueryTypes.json");
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
+
+            var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "token");
+            var qTypeObj = await piholeClient.GetQueryTypesAsync();
+
+            Assert.NotNull(qTypeObj);
+            Assert.True(qTypeObj.Querytypes.Count > 0);
+            Assert.Equal(73.4, qTypeObj.Querytypes["A (IPv4)"]);
+            Assert.Equal(25.27, qTypeObj.Querytypes["AAAA (IPv6)"]);
+        }
+
 
     }
 }

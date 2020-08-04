@@ -1,0 +1,12 @@
+﻿{
+    "querytypes": {
+        "A (IPv4)": 73.4,
+        "AAAA (IPv6)": 25.27,
+        "ANY": 0,
+        "SRV": 0.49,
+        "SOA": 0,
+        "PTR": 0.83,
+        "TXT": 0,
+        "NAPTR": 0
+    }
+}

@@ -31,6 +31,9 @@
     <None Update="Data\Api\overTimeData10mins.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Data\Api\summaryRaw.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Data\Api\summary.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

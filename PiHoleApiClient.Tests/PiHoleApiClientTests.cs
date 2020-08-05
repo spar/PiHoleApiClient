@@ -169,6 +169,25 @@ namespace PiHoleApiClient.Tests
             Assert.Equal(2, summaryObj.GravityLastUpdated.Relative.Days);
         }
 
+        [Fact]
+        public async void GetSummaryRawAsync_Success()
+        {
+            string successResponse = File.ReadAllText("Data/Api/summaryRaw.json");
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
+
+            var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "token");
+            var summaryObj = await piholeClient.GetSummaryAsync();
+
+            Assert.NotNull(summaryObj);
+            Assert.NotNull(summaryObj.GravityLastUpdated);
+            Assert.NotNull(summaryObj.GravityLastUpdated.Relative);
+            Assert.Equal("85674", summaryObj.DomainsBeingBlocked);
+            Assert.Equal("1700", summaryObj.DnsQueriesToday);
+            Assert.True(summaryObj.GravityLastUpdated.FileExists);
+            Assert.Equal("1596340568", summaryObj.GravityLastUpdated.Absolute);
+            Assert.Equal(2, summaryObj.GravityLastUpdated.Relative.Days);
+        }
+
 
     }
 }

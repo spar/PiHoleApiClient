@@ -13,7 +13,7 @@ namespace PiHoleApiClient
 
         Task<PiApiBackendType> GetApiBackendTypeAsync();
 
-        Task<dynamic> GetSummaryRawAsync();
+        Task<Summary> GetSummaryRawAsync();
 
         Task<Summary> GetSummaryAsync();
 

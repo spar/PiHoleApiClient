@@ -12,7 +12,7 @@ namespace PiHoleApiClient
     {
         private readonly string _baseUrl;
         private readonly string _token;
-        private static HttpClient _httpClient;
+        private HttpClient _httpClient;
         private readonly string _disableEndpoint = "disable";
         private readonly string _enabledEndpoint = "enable";
         private readonly string _getAllQueriesEndpoint = "getAllQueries";
@@ -22,6 +22,7 @@ namespace PiHoleApiClient
         private readonly string _overTimeData10minsEndpoint = "overTimeData10mins";
         private readonly string _getQueryTypesEndpoint = "getQueryTypes";
         private readonly string _summaryEndpoint = "summary";
+        private readonly string _summaryRawEndpoint = "summaryRaw";
 
         public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
@@ -91,9 +92,10 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<Summary>(resultString);
         }
 
-        public Task<dynamic> GetSummaryRawAsync()
+        public async Task<Summary> GetSummaryRawAsync()
         {
-            throw new NotImplementedException();
+            var resultString = await GetResultAsString($"{_baseUrl}?{_summaryRawEndpoint}");
+            return JsonConvert.DeserializeObject<Summary>(resultString);
         }
 
         public Task<string> GetTopClientsAsStringAsync()

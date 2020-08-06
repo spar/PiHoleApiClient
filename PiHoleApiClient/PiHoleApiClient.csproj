@@ -2,10 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Sandeep Parekh</Authors>
+    <Company />
+    <Description>This is a cross platform client for communicating with Pi-Hole API, a network wide Ads blocking DNS Sink.</Description>
+    <PackageProjectUrl>https://github.com/spar/PiHoleApiClient</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/spar/PiHoleApiClient</RepositoryUrl>
+    <PackageTags></PackageTags>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -23,9 +23,8 @@ namespace PiHoleApiClient
 
         Task<string> GetTopItemsAsStringAsync();
 
-        Task<dynamic> GetTopClientsAsync();
+        Task<TopClients> GetTopClientsAsync();
 
-        Task<string> GetTopClientsAsStringAsync();
 
         Task<ForwardDestinations> GetForwardDestinationsAsync();
 

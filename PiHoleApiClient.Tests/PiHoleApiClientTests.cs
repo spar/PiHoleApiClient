@@ -188,6 +188,19 @@ namespace PiHoleApiClient.Tests
             Assert.Equal(2, summaryObj.GravityLastUpdated.Relative.Days);
         }
 
+        [Fact]
+        public async void GetTopClientsAsync_Success()
+        {
+            string successResponse = File.ReadAllText("Data/Api/topClients.json");
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
+
+            var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "token");
+            var tClientsObj = await piholeClient.GetTopClientsAsync();
+
+            Assert.NotNull(tClientsObj);
+            Assert.Equal(1409, tClientsObj.TopSources["win10.internal.cloudapp.net|10.0.2.4"]);
+        }
+
 
     }
 }

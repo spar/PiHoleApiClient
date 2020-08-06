@@ -23,6 +23,7 @@ namespace PiHoleApiClient
         private readonly string _getQueryTypesEndpoint = "getQueryTypes";
         private readonly string _summaryEndpoint = "summary";
         private readonly string _summaryRawEndpoint = "summaryRaw";
+        private readonly string _topClientsEndpoint = "topClients";
 
         public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
@@ -98,14 +99,10 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<Summary>(resultString);
         }
 
-        public Task<string> GetTopClientsAsStringAsync()
+        public async Task<TopClients> GetTopClientsAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<dynamic> GetTopClientsAsync()
-        {
-            throw new NotImplementedException();
+            var resultString = await GetResultAsString($"{_baseUrl}?{_topClientsEndpoint}&auth={_token}");
+            return JsonConvert.DeserializeObject<TopClients>(resultString);
         }
 
         public Task<string> GetTopItemsAsStringAsync()

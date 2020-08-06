@@ -1,5 +1,5 @@
 # Introduction
-This is a cross platform client for communicating with [Pi-Hole](https://pi-hole.net/), a network wide Ads blocking DNS Sink, API.
+This is a cross platform client for communicating with [Pi-Hole](https://pi-hole.net/) API, a network wide Ads blocking DNS Sink.
 
 ## Pi-Hole Endpoints
 Available endpoints

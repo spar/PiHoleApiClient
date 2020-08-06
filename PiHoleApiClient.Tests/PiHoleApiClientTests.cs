@@ -145,9 +145,9 @@ namespace PiHoleApiClient.Tests
             var qTypeObj = await piholeClient.GetQueryTypesAsync();
 
             Assert.NotNull(qTypeObj);
-            Assert.True(qTypeObj.Querytypes.Count > 0);
-            Assert.Equal(73.4, qTypeObj.Querytypes["A (IPv4)"]);
-            Assert.Equal(25.27, qTypeObj.Querytypes["AAAA (IPv6)"]);
+            Assert.True(qTypeObj.Types.Count > 0);
+            Assert.Equal(73.4, qTypeObj.Types["A (IPv4)"]);
+            Assert.Equal(25.27, qTypeObj.Types["AAAA (IPv6)"]);
         }
 
         [Fact]

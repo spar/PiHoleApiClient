@@ -1,6 +1,6 @@
 ﻿namespace PiHoleApiClient.Models
 {
-    public class PiApiBackendType
+    public class BackendType
     {
         public string Type { get; set; }
     }

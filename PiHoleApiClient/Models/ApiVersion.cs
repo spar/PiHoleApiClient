@@ -2,7 +2,7 @@
 
 namespace PiHoleApiClient.Models
 {
-    public class PiApiVersion
+    public class ApiVersion
     {
         public string Version { get; set; }
     }

@@ -9,9 +9,9 @@ namespace PiHoleApiClient
     /// </summary>
     public interface IPiHoleApiClient
     {
-        Task<PiApiVersion> GetApiVersionAsync();
+        Task<ApiVersion> GetApiVersionAsync();
 
-        Task<PiApiBackendType> GetApiBackendTypeAsync();
+        Task<BackendType> GetApiBackendTypeAsync();
 
         Task<Summary> GetSummaryRawAsync();
 
@@ -26,7 +26,7 @@ namespace PiHoleApiClient
 
         Task<ForwardDestinations> GetForwardDestinationsAsync();
 
-        Task<PiQuerytypes> GetQueryTypesAsync();
+        Task<Querytypes> GetQueryTypesAsync();
 
 
         Task<List<Query>> GetAllQueriesAsync();

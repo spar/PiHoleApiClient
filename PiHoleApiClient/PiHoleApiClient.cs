@@ -59,16 +59,16 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<PreQuery>(result).MapQueries();
         }
 
-        public async Task<PiApiBackendType> GetApiBackendTypeAsync()
+        public async Task<BackendType> GetApiBackendTypeAsync()
         {
             var resultString = await GetResultAsString($"{_baseUrl}?{_getApiBackendTypeEndpoint}");
-            return JsonConvert.DeserializeObject<PiApiBackendType>(resultString);
+            return JsonConvert.DeserializeObject<BackendType>(resultString);
         }
 
-        public async Task<PiApiVersion> GetApiVersionAsync()
+        public async Task<ApiVersion> GetApiVersionAsync()
         {
             var resultString = await GetResultAsString($"{_baseUrl}?{_getApiVersionEndpoint}");
-            return JsonConvert.DeserializeObject<PiApiVersion>(resultString);
+            return JsonConvert.DeserializeObject<ApiVersion>(resultString);
         }
 
         public async Task<ForwardDestinations> GetForwardDestinationsAsync()
@@ -83,10 +83,10 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<OverTimeData10mins>(resultString);
         }
 
-        public async Task<PiQuerytypes> GetQueryTypesAsync()
+        public async Task<Querytypes> GetQueryTypesAsync()
         {
             var resultString = await GetResultAsString($"{_baseUrl}?{_getQueryTypesEndpoint}&auth={_token}");
-            return JsonConvert.DeserializeObject<PiQuerytypes>(resultString);
+            return JsonConvert.DeserializeObject<Querytypes>(resultString);
         }
 
         public async Task<Summary> GetSummaryAsync()

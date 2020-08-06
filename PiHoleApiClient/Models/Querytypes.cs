@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace PiHoleApiClient.Models
 {
-    public class PiQuerytypes
+    public class Querytypes
     {
         [JsonProperty("querytypes")]
-        public Dictionary<string, double> Querytypes { get; set; }
+        public Dictionary<string, double> Types { get; set; }
     }
 }

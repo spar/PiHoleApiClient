@@ -201,6 +201,33 @@ namespace PiHoleApiClient.Tests
             Assert.Equal(1409, tClientsObj.TopSources["win10.internal.cloudapp.net|10.0.2.4"]);
         }
 
+        [Fact]
+        public async void GetTopItemssAsync_Success()
+        {
+            string successResponse = File.ReadAllText("Data/Api/topItems.json");
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
+
+            var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "token");
+            var tItemsObj = await piholeClient.GetTopItemsAsync();
+
+            Assert.NotNull(tItemsObj);
+            Assert.Equal(92, tItemsObj.TopQueries["polling.bbc.co.uk"]);
+            Assert.Equal(534, tItemsObj.TopAds["g.msn.com"]);
+        }
+
+        [Fact]
+        public async void GetRecentlyBlocked_Success()
+        {
+            string successResponse = "vortex.data.microsoft.com";
+            var httpClient = new HttpClient(GetMockHttpMsgHandler(successResponse).Object);
+
+            var piholeClient = new PiHoleApiClient(httpClient, "http://pi.hole/admin/api.php", "token");
+            var blocked = await piholeClient.RecentlyBlockedAsync();
+
+            Assert.NotNull(blocked);
+            Assert.Equal("vortex.data.microsoft.com", blocked);
+        }
+
 
     }
 }

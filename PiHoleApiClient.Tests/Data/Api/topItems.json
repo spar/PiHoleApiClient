@@ -1,0 +1,19 @@
+﻿{
+    "top_queries": {
+        "polling.bbc.co.uk": 92,
+        "wpad.reddog.microsoft.com": 80,
+        "www.bing.com": 60,
+        "www.msftncsi.com": 31,
+    },
+    "top_ads": {
+        "g.msn.com": 534,
+        "g.live.com": 64,
+        "vortex.data.microsoft.com": 20,
+        "c.msn.com": 16,
+        "watson.telemetry.microsoft.com": 8,
+        "web.vortex.data.microsoft.com": 4,
+        "otf.msn.com": 2,
+        "www.googletagservices.com": 2,
+        "mybbc-analytics.files.bbci.co.uk": 2
+    }
+}

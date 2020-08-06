@@ -19,9 +19,7 @@ namespace PiHoleApiClient
 
         Task<OverTimeData10mins> GetOverTimeData10minsAsync();
 
-        Task<dynamic> GetTopItemsAsync();
-
-        Task<string> GetTopItemsAsStringAsync();
+        Task<TopItems> GetTopItemsAsync();
 
         Task<TopClients> GetTopClientsAsync();
 

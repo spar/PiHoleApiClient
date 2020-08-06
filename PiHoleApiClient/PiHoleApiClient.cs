@@ -24,6 +24,8 @@ namespace PiHoleApiClient
         private readonly string _summaryEndpoint = "summary";
         private readonly string _summaryRawEndpoint = "summaryRaw";
         private readonly string _topClientsEndpoint = "topClients";
+        private readonly string _topItemsEndpoint = "topItems";
+        private readonly string _recentBlockedEndpoint = "recentBlocked";
 
         public PiHoleApiClient(HttpClient httpClient, string baseUrl, string token = "")
         {
@@ -105,19 +107,16 @@ namespace PiHoleApiClient
             return JsonConvert.DeserializeObject<TopClients>(resultString);
         }
 
-        public Task<string> GetTopItemsAsStringAsync()
+        public async Task<TopItems> GetTopItemsAsync()
         {
-            throw new NotImplementedException();
+            var resultString = await GetResultAsString($"{_baseUrl}?{_topItemsEndpoint}&auth={_token}");
+            return JsonConvert.DeserializeObject<TopItems>(resultString);
         }
 
-        public Task<dynamic> GetTopItemsAsync()
+        public async Task<string> RecentlyBlockedAsync()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> RecentlyBlockedAsync()
-        {
-            throw new NotImplementedException();
+            return await GetResultAsString($"{_baseUrl}?{_recentBlockedEndpoint}&auth={_token}");
+            
         }
     }
 }

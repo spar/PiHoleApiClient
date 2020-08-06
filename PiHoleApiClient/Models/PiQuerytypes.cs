@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace PiHoleApiClient.Models
 {
-    public class TopClients
+    public class PiQuerytypes
     {
-        [JsonProperty("top_sources")]
-        public Dictionary<string, long> TopSources { get; set; }
+        [JsonProperty("querytypes")]
+        public Dictionary<string, double> Querytypes { get; set; }
     }
 }

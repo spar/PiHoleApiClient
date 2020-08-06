@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/sandeepparekh/PiHoleApiClient/_apis/build/status/PiHoleApiClient-CI?branchName=master)](https://dev.azure.com/sandeepparekh/PiHoleApiClient/_build/latest?definitionId=11&branchName=master)
 # Introduction
 This is a cross platform client for communicating with [Pi-Hole](https://pi-hole.net/) API, a network wide Ads blocking DNS Sink.
 

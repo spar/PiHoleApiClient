@@ -7,8 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PiHoleApiClient", "PiHoleAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PiHoleApiClient.Tests", "PiHoleApiClient.Tests\PiHoleApiClient.Tests.csproj", "{CDB2D080-B87B-4355-A119-AB398D41460A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiHoleApiClient.Local", "PiHoleApiClient.Local\PiHoleApiClient.Local.csproj", "{115E6742-CF2B-4E31-AF38-894450B09DEA}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{CDB2D080-B87B-4355-A119-AB398D41460A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDB2D080-B87B-4355-A119-AB398D41460A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CDB2D080-B87B-4355-A119-AB398D41460A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{115E6742-CF2B-4E31-AF38-894450B09DEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{115E6742-CF2B-4E31-AF38-894450B09DEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{115E6742-CF2B-4E31-AF38-894450B09DEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{115E6742-CF2B-4E31-AF38-894450B09DEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
